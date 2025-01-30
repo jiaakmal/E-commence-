@@ -16,6 +16,7 @@ import MyState from "./context/myState";
 import { Toaster } from "react-hot-toast";
 import ProtectedRouteForUser from "./protectedRoute/ProtectedRouteForUser";
 import ProtectedRouteForAdmin from "./protectedRoute/ProtectedRouteForAdmin";
+import ProductDetail from "./components/admin/ProductDetail";
 const App = () => {
   return (
     <MyState>
@@ -45,8 +46,17 @@ const App = () => {
               </ProtectedRouteForAdmin>
             }
           />
-          <Route path="/addProduct" element={<AddProduct />} />
-          <Route path="/editProduct" element={<EditProduct />} />
+          <Route path="/addproduct" element={
+            <ProtectedRouteForAdmin>
+              <AddProduct/>
+            </ProtectedRouteForAdmin>
+          } />
+          <Route path="/updateproduct/:id" element={
+            <ProtectedRouteForAdmin>
+             <EditProduct/>
+            </ProtectedRouteForAdmin>
+          } />
+          {/* <Route path="" element={<ProductDetail/>}/> */}
         </Routes>
         <Toaster />
       </Router>
