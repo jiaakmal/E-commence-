@@ -7,7 +7,9 @@ import Track from "../../components/track/Track";
 
 
 const HomePage = () => {
+
   return (
+  
     <Layout>
         <HeroSection/>
         <Category/>

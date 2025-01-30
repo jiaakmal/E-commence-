@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 const ProductDetail = () => {
     return (
         <div>
@@ -5,8 +6,9 @@ const ProductDetail = () => {
                 {/* text  */}
                 <h1 className=" text-xl text-pink-300 font-bold">All Product</h1>
                 {/* Add Product Button  */}
-                <button className="px-5 py-2 bg-pink-50 border border-pink-100 rounded-lg">Add Product</button>
-            </div>
+                <Link to={'/addProduct'}><button className="px-5 py-2 bg-pink-50 border border-pink-100 rounded-lg">Add Product</button>
+                </Link>
+                </div>
 
             {/* table  */}
             <div className="w-full overflow-x-auto">
