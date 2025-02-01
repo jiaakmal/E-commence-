@@ -24,6 +24,7 @@ function MyState({ children }) {
                     productArray.push({ ...doc.data(), id: doc.id });
                 });
                 setGetAllProduct(productArray);
+                console.log(productArray);
                 setLoading(false);
             });
             return () => data;
