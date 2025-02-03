@@ -2,11 +2,13 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import ProductDetail from '../../components/admin/ProductDetail';
 import OrderDetail from '../../components/admin/OrderDetail';
 import UserDetail from '../../components/admin/UserDetail';
+import { useContext } from 'react';
+import myContext from '../../context/myContext';
 
 const AdminDashboard = () => {
-
-    const user = JSON.parse(localStorage.getItem("users"));
-
+    const user = JSON.parse(localStorage.getItem('users'));
+    const context = useContext(myContext);
+    const {getAllProduct, getAllOrder , getAllUser} = context;
     return (
         <div>
             {/* Top */}
@@ -26,11 +28,30 @@ const AdminDashboard = () => {
                             <img src="https://cdn-icons-png.flaticon.com/128/2202/2202112.png" alt="" />
                         </div>
                         {/* text  */}
-                        <div className="">
-                            <h1 className=" text-center text-lg text-pink-500"><span className=" font-bold">Name :</span>{user?.name}</h1>
-                            <h1 className=" text-center text-lg text-pink-500"><span className=" font-bold">Email :</span>{user?.email}</h1>
-                            <h1 className=" text-center text-lg text-pink-500"><span className=" font-bold">Date :</span>{user?.date}</h1>
-                            <h1 className=" text-center text-lg text-pink-500"><span className=" font-bold">Role :</span>{user?.role}</h1>
+                           <div className="">
+                            {/* Name  */}
+                            <h1 className=" text-center text-lg">
+                                <span className=" font-bold">Name : </span>
+                                {user?.name}
+                            </h1>
+
+                            {/* Email  */}
+                            <h1 className=" text-center text-lg">
+                                <span className=" font-bold">Email : </span>
+                                {user?.email}
+                            </h1>
+
+                            {/* Date  */}
+                            <h1 className=" text-center text-lg">
+                                <span className=" font-bold">Date : </span>
+                                {user?.date}
+                            </h1>
+
+                            {/* Role  */}
+                            <h1 className=" text-center text-lg">
+                                <span className=" font-bold">Role : </span>
+                                {user?.role}
+                            </h1>
                         </div>
                     </div>
                 </div>
@@ -65,7 +86,7 @@ const AdminDashboard = () => {
                                         </svg>
 
                                     </div>
-                                    <h2 className="title-font font-medium text-3xl text-pink-400 fonts1" >10</h2>
+                                    <h2 className="title-font font-medium text-3xl text-pink-400 fonts1" >{getAllProduct.length}</h2>
                                     <p className=" text-pink-500  font-bold" >Total Products</p>
                                 </div>
                             </Tab>
@@ -94,7 +115,7 @@ const AdminDashboard = () => {
                                             <path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1" />
                                         </svg>
                                     </div>
-                                    <h2 className="title-font font-medium text-3xl text-pink-400 fonts1" >10</h2>
+                                    <h2 className="title-font font-medium text-3xl text-pink-400 fonts1" >{getAllOrder.length}</h2>
                                     <p className=" text-pink-500  font-bold" >Total Order</p>
                                 </div>
                             </Tab>
@@ -122,22 +143,22 @@ const AdminDashboard = () => {
                                         </svg>
 
                                     </div>
-                                    <h2 className="title-font font-medium text-3xl text-pink-400 fonts1" >10</h2>
-                                    <p className=" text-pink-500  font-bold" >Total Order</p>
+                                    <h2 className="title-font font-medium text-3xl text-pink-400 fonts1" >{getAllUser.length}</h2>
+                                    <p className=" text-pink-500  font-bold" >Total Users</p>
                                 </div>
                             </Tab>
                         </TabList>
 
                         <TabPanel>
-                           <ProductDetail/>
+                            <ProductDetail />
                         </TabPanel>
 
                         <TabPanel>
-                           <OrderDetail/>
+                            <OrderDetail/>
                         </TabPanel>
 
                         <TabPanel>
-                            <UserDetail/>
+                           <UserDetail/>
                         </TabPanel>
                     </Tabs>
                 </div>

@@ -11,6 +11,7 @@
     "tailwind:init": "tailwindcss init -p"
   },
   "dependencies": {
+    "@material-tailwind/react": "^2.1.10",
     "@reduxjs/toolkit": "^2.5.1",
     "@tailwindcss/postcss": "^4.0.0",
     "@tailwindcss/vite": "^4.0.0",
