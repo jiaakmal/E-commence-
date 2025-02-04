@@ -60,44 +60,73 @@ const CartPage = () => {
         )
     });
 
-    const buyNowFunction = () => {
-        // validation 
-        if (addressInfo.name === "" || addressInfo.address === "" || addressInfo.pincode === "" || addressInfo.mobileNumber === "") {
-            return toast.error("All Fields are required")
-        }
+//    const buyNowFunction = () => { 
+//         // validation 
+//         if (addressInfo.name === "" || addressInfo.address === "" || addressInfo.pincode === "" || addressInfo.mobileNumber === "") {
+//             return toast.error("All Fields are required")
+//         }
 
-        // Order Info 
-        const orderInfo = {
-            cartItems,
-            addressInfo,
-            email: user.email,
-            userid: user.uid,
-            status: "confirmed",
-            time: Timestamp.now(),
-            date: new Date().toLocaleString(
-                "en-US",
-                {
-                    month: "short",
-                    day: "2-digit",
-                    year: "numeric",
-                }
-            )
-        }
-        try {
-            const orderRef = collection(fireDB, 'order');
-            addDoc(orderRef, orderInfo);
-            setAddressInfo({
-                name: "",
-                address: "",
-                pincode: "",
-                mobileNumber: "",
-            })
-            toast.success("Order Placed Successfull")
-        } catch (error) {
-            console.log(error)
-        }
+//         // Order Info 
+//         const orderInfo = {
+//             cartItems,
+//             addressInfo,
+//             email: user.email,
+//             userid: user.uid,
+//             status: "confirmed",
+//             time: Timestamp.now(),
+//             date: new Date().toLocaleString(
+//                 "en-US",
+//                 {
+//                     month: "short",
+//                     day: "2-digit",
+//                     year: "numeric",
+//                 }
+//             )
+//         }
+//         try {
+//             const orderRef = collection(fireDB, 'order');
+//             addDoc(orderRef, orderInfo);
+//             setAddressInfo({
+//                 name: "",
+//                 address: "",
+//                 pincode: "",
+//                 mobileNumber: "",
+//             })
+//             toast.success("Order Placed Successfull")
+//         } catch (error) {
+//             console.log(error)
+//         }
 
+//     }
+const buyNowFunction = async () => {
+    if (!name || !address || !pincode || !phoneNumber) {
+      return toast.error("All fields are required");
     }
+    const stripe = await loadStripe('pk_test_51QoNnBCkYss68bnSxBjrGkimwHmitNuZjRlmUqYBycM0MyMPN7Il5YNQ7RBpScL1P9gzeUvHzNBkEddZ4m3Sz6sK00Rc14AzNF');
+    try {
+      console.log("Calling Firebase function...");
+      const response = await fetch("https://us-central1-your-project.cloudfunctions.net/createCheckoutSession", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ cartItems }),
+      });
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error("Error response:", errorText);
+        return toast.error("Error with payment session.");
+      }
+      const session = await response.json();
+      console.log("Stripe session received:", session);
+      const result = await stripe.redirectToCheckout({ sessionId: session.id });
+      if (result.error) {
+        console.error("Stripe error:", result.error);
+        toast.error(result.error.message);
+      }
+    } catch (error) {
+      console.error("Error in buyNow:", error);
+      toast.error("Something went wrong.");
+    }
+  };
     return (
         <Layout>
             <div className="container mx-auto px-4 max-w-7xl px-2 lg:px-0">
