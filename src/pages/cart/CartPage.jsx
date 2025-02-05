@@ -7,7 +7,7 @@ import { useEffect,useState } from "react";
 import BuyNowModal from "../../components/buyNowModal/BuyNowModal";
 import { collection, addDoc } from "firebase/firestore";
 import { Timestamp} from "firebase/firestore";
-import { fireDB } from "../../firebase/FirebaseConfig";
+import { fireDB } from "../../Firebase/FirebaseConfig";
 import { useNavigate } from "react-router-dom";
 const CartPage = () => {
     const cartItems = useSelector((state) => state.cart);
