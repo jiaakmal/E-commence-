@@ -3,7 +3,7 @@ import Layout from "../../components/layout/Layout";
 import { useContext } from "react";
 import myContext from "../../context/myContext";
 import { getDoc, doc } from "firebase/firestore";
-import { fireDB } from "../../firebase/FirebaseConfig";
+import { fireDB } from "../../Firebase/FirebaseConfig";
 import { useEffect, useState } from "react";
 import Loader from "../../components/loader/Loader";
 import { useSelector, useDispatch } from "react-redux";
