@@ -101,7 +101,7 @@ const CartPage = () => {
 
     return (
         <Layout>
-            <div className="container mx-auto px-4 max-w-7xl px-2 lg:px-0">
+            <div className="container mx-auto px-4 max-w-7xl py-2 lg:px-0">
                 <div className="mx-auto max-w-2xl py-8 lg:max-w-7xl">
                     <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                         Shopping Cart
