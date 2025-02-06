@@ -11,6 +11,8 @@ const UserDashboard = () => {
     const { loading, getAllOrder } = context
     // console.log(getAllOrder)
 
+    const userOrder = getAllOrder.filter((obj) => obj.userid === user?.uid)
+
     // console.log(user)
     return (
         <Layout>
@@ -63,9 +65,12 @@ const UserDashboard = () => {
                         {loading && <Loader/>}
                         </div>
 
+
                         {/* main 2 */}
-                        {getAllOrder.filter((obj) => obj.userid === user?.uid).map((order, index) => {
-                            // console.log(order);
+                        
+                        {userOrder.length>0 ? 
+                        userOrder.map((order, index) => {
+                         
                             return (
                                 <div key={index}>
                                     {order.cartItems.map((item, index) => {
@@ -142,13 +147,16 @@ const UserDashboard = () => {
                                     })}
                                 </div>
                             )
-                        })}
-
-                    </div>
+                        })
+                        : <div className="text-center">No Order Found</div>
+                        }
+                    
                 </div>
+            </div>
             </div>
         </Layout>
     );
 }
+
 
 export default UserDashboard;
