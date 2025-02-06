@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth/web-extension";
 import { collection, addDoc,Timestamp  } from "firebase/firestore";
-import { auth , fireDB } from "../../firebase/FirebaseConfig";
+import { auth , fireDB } from "../../Firebase/FirebaseConfig";
 import Loader from "../../components/loader/Loader";
 
 const Signup = () => {
