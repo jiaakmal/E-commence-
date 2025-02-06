@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
-import { fireDB } from '../../firebase/FirebaseConfig';
+import { fireDB } from '../../Firebase/FirebaseConfig';
 import Loader from '../../components/loader/Loader';
 
 const AddProduct = () => {
