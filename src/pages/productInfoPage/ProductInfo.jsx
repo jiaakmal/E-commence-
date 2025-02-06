@@ -53,7 +53,7 @@ const ProductInfo = () => {
 
   return (
     <Layout>
-      <section className="py-5 lg:py-16 font-poppins dark:bg-gray-800">
+      <section className="py-5 lg:py-16 font-poppins bg-white">
         {loading ? (
           <>
             <div className="flex justify-center items-center">
@@ -78,7 +78,7 @@ const ProductInfo = () => {
                 <div className="w-full px-4 md:w-1/2">
                   <div className="lg:pl-20">
                     <div className="mb-6 ">
-                      <h2 className="max-w-xl mb-6 text-xl font-semibold leading-loose tracking-wide text-gray-700 md:text-2xl dark:text-gray-300">
+                      <h2 className="max-w-xl mb-6 text-xl font-semibold leading-loose tracking-wide text-gray-600 md:text-2xl ">
                         {product?.title}
                       </h2>
                       <div className="flex flex-wrap items-center mb-6">
